@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.enums.MoveDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.function.Supplier;
@@ -15,6 +16,7 @@ public class BridgeGameController {
 
     public void run() {
         int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
+        MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
     }
 
     private <T> T repeatUntilSuccessWithReturn(Supplier<T> supplier) {
