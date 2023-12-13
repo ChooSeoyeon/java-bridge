@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeMaker;
 import bridge.model.dto.GameResult;
 import bridge.model.enums.GameCommand;
 import bridge.model.enums.MoveDirection;
@@ -23,12 +26,16 @@ public class BridgeGameController {
         endGame(new GameResult(List.of("U", "D", "D"), true, 1));
     }
 
-    private void readyGame() {
+    private List<String> readyGame() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         outputView.printGameStartAnnounce();
         int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void startGame() {
+
         playGame(); // TODO: 다 돌 거나 실패할 때까지 반복
         restartGame(); // TODO: 실패했을 때만
     }
