@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.enums.GameCommand;
 import bridge.model.enums.MoveDirection;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -22,7 +23,8 @@ public class InputView {
         return MoveDirection.findByName(inputMoving);
     }
 
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        String inputGameCommand = Console.readLine();
+        return GameCommand.findByName(inputGameCommand);
     }
 }

@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.enums.GameCommand;
 import bridge.model.enums.MoveDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,6 +18,7 @@ public class BridgeGameController {
     public void run() {
         int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
         MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
+        GameCommand gameCommand = repeatUntilSuccessWithReturn(inputView::readGameCommand);
     }
 
     private <T> T repeatUntilSuccessWithReturn(Supplier<T> supplier) {
