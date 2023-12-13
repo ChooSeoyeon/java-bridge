@@ -22,32 +22,21 @@ public class OutputView {
     }
 
     private String formatBridgeToMap(List<String> bridge) {
-        StringBuilder firstLine = new StringBuilder("[ ");
-        StringBuilder secondLine = new StringBuilder("[ ");
+        return buildLine(bridge, "U") + "\n" + buildLine(bridge, "D");
+    }
+
+    private String buildLine(List<String> bridge, String symbol) {
+        StringBuilder line = new StringBuilder("[ ");
 
         for (String s : bridge) {
-            if ("U".equals(s)) {
-                firstLine.append("O | ");
-                secondLine.append("  | ");
-            } else if ("D".equals(s)) {
-                firstLine.append("  | ");
-                secondLine.append("O | ");
-            } else {
-                firstLine.append("  | ");
-                secondLine.append("  | ");
-            }
+            line.append(symbol.equals(s) ? "O | " : "  | ");
+        }
+        if (line.length() > 2) {
+            line.setLength(line.length() - 2);
         }
 
-        if (firstLine.length() > 2) {
-            firstLine.setLength(firstLine.length() - 2);
-        }
-        if (secondLine.length() > 2) {
-            secondLine.setLength(secondLine.length() - 2);
-        }
-        firstLine.append("]");
-        secondLine.append("]");
-
-        return firstLine + "\n" + secondLine;
+        line.append("]");
+        return line.toString();
     }
 
     private String formatIsSuccessToSuccess(boolean isSuccess) {
