@@ -1,9 +1,11 @@
 package bridge.controller;
 
+import bridge.model.dto.GameResult;
 import bridge.model.enums.GameCommand;
 import bridge.model.enums.MoveDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BridgeGameController {
@@ -17,17 +19,22 @@ public class BridgeGameController {
 
     public void run() {
         readyGame();
-        startGame();
+        playGame();
+        endGame(new GameResult(List.of("U", "D", "D"), true, 1));
     }
 
     private void readyGame() {
         outputView.printGameStartAnnounce();
     }
 
-    private void startGame() {
+    private void playGame() {
         int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
         MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
         GameCommand gameCommand = repeatUntilSuccessWithReturn(inputView::readGameCommand);
+    }
+
+    private void endGame(GameResult gameResult) {
+        outputView.printGameResult(gameResult);
     }
 
     private <T> T repeatUntilSuccessWithReturn(Supplier<T> supplier) {
