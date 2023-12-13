@@ -3,7 +3,7 @@ package bridge.model.dto;
 import java.util.List;
 
 public class GameResult {
-    List<String> bridge;
+    List<String> bridge; // TODO: MoveResult로 변경
     boolean isSuccess;
     int tryCount;
 
