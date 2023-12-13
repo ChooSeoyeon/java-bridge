@@ -18,6 +18,7 @@ public class BridgeGame {
 
     public void retry() {
         tryNumber = 0;
+        bridge.clear();
     }
 
     public void countTryNumber() {
