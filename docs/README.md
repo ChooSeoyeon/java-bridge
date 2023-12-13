@@ -7,7 +7,7 @@
 ### BridgeGame
 
 - [x] 다리를 가진다
-- [ ] 다리를 건넌다 (# MoveDirection, $ BridgeCapture)
+- [x] 다리를 건넌다 (# MoveDirection)
 - [ ] 다리 다시 건넌다
 - [x] 시도 횟수 카운트한다
 - [ ] 성공 여부를 확인한다

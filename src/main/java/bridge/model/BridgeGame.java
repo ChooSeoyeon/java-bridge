@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.enums.MoveDirection;
 import java.util.List;
 
 public class BridgeGame {
@@ -11,7 +12,8 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void move() {
+    public void move(MoveDirection moveDirection) {
+        bridge.add(moveDirection.getName());
     }
 
     public void retry() {
