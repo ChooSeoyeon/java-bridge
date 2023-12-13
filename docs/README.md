@@ -8,6 +8,8 @@
 
 - [ ] 다리를 건넌다 (# MoveDirection, $ BridgeCapture)
 - [ ] 다리 다시 건넌다
+- [x] 시도 횟수 카운트한다
+- [ ] 최종 게임 결과 생성한다
 
 ### BridgeMaker
 
@@ -24,11 +26,6 @@
 - [ ] 이동한다
 - [ ] 이동 결과 캡처한다 ($ BridgeCapture)
 - [ ] 마지막 칸인지 확인한다
-
-### GameRecord
-
-- [ ] 시도 횟수 카운트한다
-- [ ] 최종 게임 결과 생성한다
 
 ### Enums
 
@@ -150,8 +147,8 @@
             - 결과
 - 역할 : 책임의 집합(재사용성)
     - 진행자 -> BridgeGameController
-    - 다리 -> Bridge + BridgeGame + BridgeMaker + BridgeRandomNumberGenerator
-    - 기록자 -> GameRecord
+    - 다리 -> Bridge
+    - 기록자 -> BridgeGame
 
 ## 메모
 
