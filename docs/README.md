@@ -1,8 +1,64 @@
 # 기능 구현 목록
 
+- #은 인자, $은 반환값, %는 예외 <- 확실한 것만 표기하고, 불확실한 것은 생략
+
 ## Model
 
+### BridgeGame
+
+- [ ] 다리 건너기 (# MoveDirection, $ BridgeCapture)
+- [ ] 다리 다시 건너기
+
+### BridgeMaker
+
+- [ ] 다리 생성하기
+    - [ ] 길이 지정하기 (% 3~20 아닌 경우, 예외 발생시킨다)
+    - [ ] 건널 수 있는 칸 결정하기 (# 무작위 값)
+
+### BridgeRandomNumberGenerator
+
+- [ ] 무작위 값 생성하기
+
+### Bridge
+
+- [ ] 이동하기
+- [ ] 이동 결과 캡처하기 ($ BridgeCapture)
+- [ ] 마지막 칸인지 확인하기
+
+### GameRecord
+
+- [ ] 시도 횟수 카운트하기
+- [ ] 최종 게임 결과 생성하기
+
+### Enums
+
+### MoveDirection
+
+- 이동 방향(U, D)을 정의한다
+
+### GameCommand
+
+- 게임 명령어(R, Q)를 정의한다
+
 ## View
+
+### InputView
+
+- [ ] 다리 길이 입력
+    - [ ] % 숫자가 아닌 경우, 예외 발생시킨다
+- [ ] 이동할 칸 입력
+    - [ ] % 문자열이 아닌 경우, 예외 발생시킨다
+    - [ ] % 선택 가능한 이동 방향이 아닌 경우, 예외 발생시킨다
+- [ ] 게임 재시작 여부 입력
+    - [ ] % 문자열이 아닌 경우, 예외 발생시킨다
+    - [ ] % 선택 가능한 게임 명령어가 아닌 경우, 예외 발생시킨다
+
+### OutputView
+
+- [ ] 에러 메시지 출력
+- [ ] 게임 시작 문구 출력
+- [ ] 이동 결과 출력
+- [ ] 최종 게임 결과 출력
 
 ## Controller
 
@@ -87,7 +143,14 @@
             - 결과
 - 역할 : 책임의 집합(재사용성)
     - 진행자 -> BridgeGameController
-    - 다리 -> Bridge
-    - 기록자 -> GameResult
+    - 다리 -> Bridge + BridgeGame + BridgeMaker + BridgeRandomNumberGenerator
+    - 기록자 -> GameRecord
 
 ## 메모
+
+- 예외 처리
+    - 다리 길이 (3~20)
+    - 이동할 칸 (U, D)
+    - 게임 재시작 여부 (R, Q)
+- dto
+    - 이동 결과 표 모양을 dto로 갖고 있게 하기 -> BridgeCapture
