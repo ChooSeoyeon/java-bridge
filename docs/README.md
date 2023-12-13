@@ -34,7 +34,7 @@
 
 ### MoveDirection
 
-- 이동 방향(U, D)을 정의한다
+- [x] 이동 방향(U, D)을 정의한다
 
 ### GameCommand
 
