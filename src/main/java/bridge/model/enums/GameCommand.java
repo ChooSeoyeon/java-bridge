@@ -22,4 +22,8 @@ public enum GameCommand {
     public String getName() {
         return name;
     }
+
+    public boolean isRestart() {
+        return this == RESTART;
+    }
 }

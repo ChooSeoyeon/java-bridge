@@ -19,18 +19,30 @@ public class BridgeGameController {
 
     public void run() {
         readyGame();
-        playGame();
+        startGame();
         endGame(new GameResult(List.of("U", "D", "D"), true, 1));
     }
 
     private void readyGame() {
         outputView.printGameStartAnnounce();
+        int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
+    }
+
+    private void startGame() {
+        playGame(); // TODO: 다 돌 거나 실패할 때까지 반복
+        restartGame(); // TODO: 실패했을 때만
     }
 
     private void playGame() {
-        int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
         MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
+        outputView.printMap(List.of("D", "D", "D"));
+    }
+
+    private void restartGame() {
         GameCommand gameCommand = repeatUntilSuccessWithReturn(inputView::readGameCommand);
+        if (gameCommand.isRestart()) {
+            startGame();
+        }
     }
 
     private void endGame(GameResult gameResult) {

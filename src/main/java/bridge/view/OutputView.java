@@ -8,7 +8,8 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public void printMap() { // 이름 변경 불가
+    public void printMap(List<String> bridge) {
+        System.out.println(formatBridgeToMap(bridge));
     }
 
     public void printGameResult(GameResult gameResult) {
