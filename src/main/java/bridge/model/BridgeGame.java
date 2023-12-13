@@ -1,15 +1,18 @@
 package bridge.model;
 
 import bridge.model.enums.MoveDirection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
     private int tryNumber;
     private List<String> bridge;
+    private int bridgeSize;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(int bridgeSize) {
         this.tryNumber = 0;
-        this.bridge = bridge;
+        this.bridge = new ArrayList<>();
+        this.bridgeSize = bridgeSize;
     }
 
     public void move(MoveDirection moveDirection) {
@@ -23,5 +26,9 @@ public class BridgeGame {
 
     public void countTryNumber() {
         tryNumber++;
+    }
+
+    public boolean isSuccess() {
+        return bridge.size() == bridgeSize;
     }
 }
