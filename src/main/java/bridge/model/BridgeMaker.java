@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeNumberGenerator;
+import bridge.model.enums.MoveDirection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,6 @@ public class BridgeMaker {
 
     private String makeBridgeUnit() {
         int number = bridgeNumberGenerator.generate();
-        if (number == 0) { // TODO: enum 사용
-            return "D";
-        }
-        return "U";
+        return MoveDirection.findNameByNumber(number);
     }
 }
