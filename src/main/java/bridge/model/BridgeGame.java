@@ -18,19 +18,20 @@ public class BridgeGame {
     }
 
     public boolean canTryMove() {
+        System.out.println("tryNumber = " + tryNumber);
+        System.out.println("bridge.size() = " + bridge.size());
         return tryNumber < bridge.size();
     }
 
-    public void move(MoveDirection moveDirection) {
-        if (isSuccessToMove()) {
-            countSuccessNumber();
-        }
+    public List<String> move(MoveDirection moveDirection) {
         countTryNumber();
         moveResult.add(moveDirection.getName());
+        return moveResult;
     }
 
-    private boolean isSuccessToMove() {
-        return moveResult.get(tryNumber).equals(bridge.get(tryNumber));
+    public boolean isFailToMove() {
+        return !(moveResult.get(tryNumber - 1)
+                .equals(bridge.get(tryNumber - 1)));
     }
 
     private void countSuccessNumber() {

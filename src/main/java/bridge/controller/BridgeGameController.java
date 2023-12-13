@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.dto.GameResult;
 import bridge.model.enums.GameCommand;
@@ -14,6 +15,7 @@ import java.util.function.Supplier;
 public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
+    private BridgeGame bridgeGame;
 
     public BridgeGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -23,31 +25,42 @@ public class BridgeGameController {
     public void run() {
         readyGame();
         startGame();
-        endGame(new GameResult(List.of("U", "D", "D"), true, 1));
+        endGame(new GameResult(List.of("U", "D", "U"), true, 1));
     }
 
-    private List<String> readyGame() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private void readyGame() {
         outputView.printGameStartAnnounce();
-        int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
+        List<String> bridge = repeatUntilSuccessWithReturn(this::settingBridge);
+        bridgeGame = new BridgeGame(bridge);
+    }
+
+    private List<String> settingBridge() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void startGame() {
-
-        playGame(); // TODO: 다 돌 거나 실패할 때까지 반복
-        restartGame(); // TODO: 실패했을 때만
+        while (bridgeGame.canTryMove()) {
+            playGame();
+            if (bridgeGame.isFailToMove()) {
+                restartGame();
+                break;
+            }
+        }
     }
 
     private void playGame() {
         MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
-        outputView.printMap(List.of("D", "D", "D"));
+        List<String> moveResult = bridgeGame.move(moveDirection);
+        outputView.printMap(moveResult);
     }
 
     private void restartGame() {
         GameCommand gameCommand = repeatUntilSuccessWithReturn(inputView::readGameCommand);
         if (gameCommand.isRestart()) {
+            bridgeGame.retry();
             startGame();
         }
     }
