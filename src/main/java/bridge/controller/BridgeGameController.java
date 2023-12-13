@@ -25,7 +25,7 @@ public class BridgeGameController {
     public void run() {
         readyGame();
         startGame();
-        endGame(new GameResult(List.of("U", "D", "U"), true, 1));
+        endGame();
     }
 
     private void readyGame() {
@@ -65,7 +65,8 @@ public class BridgeGameController {
         }
     }
 
-    private void endGame(GameResult gameResult) {
+    private void endGame() {
+        GameResult gameResult = bridgeGame.captureGameResult();
         outputView.printGameResult(gameResult);
     }
 
