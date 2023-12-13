@@ -16,6 +16,15 @@ public class BridgeGameController {
     }
 
     public void run() {
+        readyGame();
+        startGame();
+    }
+
+    private void readyGame() {
+        outputView.printGameStartAnnounce();
+    }
+
+    private void startGame() {
         int bridgeSize = repeatUntilSuccessWithReturn(inputView::readBridgeSize);
         MoveDirection moveDirection = repeatUntilSuccessWithReturn(inputView::readMoving);
         GameCommand gameCommand = repeatUntilSuccessWithReturn(inputView::readGameCommand);
