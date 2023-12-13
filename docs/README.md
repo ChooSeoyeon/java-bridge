@@ -6,9 +6,11 @@
 
 ### BridgeGame
 
+- [x] 다리를 가진다
 - [ ] 다리를 건넌다 (# MoveDirection, $ BridgeCapture)
 - [ ] 다리 다시 건넌다
 - [x] 시도 횟수 카운트한다
+- [ ] 성공 여부를 확인한다
 - [ ] 최종 게임 결과 생성한다
 
 ### BridgeMaker
@@ -16,16 +18,6 @@
 - [x] 다리를 생성한다
     - [x] 다리 길이를 지정한다 (% 3~20 아닌 경우, 예외 발생시킨다)
     - [x] 건널 수 있는 칸을 결정한다 (# 무작위 값)
-
-### BridgeRandomNumberGenerator
-
-- [ ] 무작위 값 생성한다
-
-### Bridge
-
-- [ ] 이동한다
-- [ ] 이동 결과 캡처한다 ($ BridgeCapture)
-- [ ] 마지막 칸인지 확인한다
 
 ### Enums
 
