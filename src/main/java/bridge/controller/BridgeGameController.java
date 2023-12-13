@@ -79,15 +79,4 @@ public class BridgeGameController {
             }
         }
     }
-
-    private void repeatUntilSuccess(Runnable action) {
-        while (true) {
-            try {
-                action.run();
-                return;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
 }
